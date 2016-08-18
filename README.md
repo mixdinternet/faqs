@@ -8,7 +8,7 @@ Adicione no seu composer.json
 
 ```js
   "require": {
-    "mixdinternet/faqs": "0.1.*"
+    "mixdinternet/faqs": "0.0.*"
   }
 ```
 
