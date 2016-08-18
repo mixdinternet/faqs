@@ -1,6 +1,6 @@
 ## Faqs
 
-Pacote inicial de cadastro de faqs.
+Pacote inicial de Faqs.
 
 ## Instalação
 
