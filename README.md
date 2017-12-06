@@ -1,6 +1,8 @@
 ## Faqs
 
-Pacote inicial de Faqs.
+[![Total Downloads](https://poser.pugx.org/mixdinternet/faqs/d/total.svg)](https://packagist.org/packages/mixdinternet/faqs)
+[![Latest Stable Version](https://poser.pugx.org/mixdinternet/faqs/v/stable.svg)](https://packagist.org/packages/mixdinternet/faqs)
+[![License](https://poser.pugx.org/mixdinternet/faqs/license.svg)](https://packagist.org/packages/mixdinternet/faqs)
 
 ## Instalação
 

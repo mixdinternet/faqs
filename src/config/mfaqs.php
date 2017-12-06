@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'name' => 'Faqs'
-    , 'icon' => 'fa fa-question'
-    , 'order' => 50
-
+    'name' => 'Faqs',
+    'icon' => 'fa fa-question',
+    'order' => 50
 ];

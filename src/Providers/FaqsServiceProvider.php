@@ -4,43 +4,32 @@ namespace Mixdinternet\Faqs\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Mixdinternet\Faqs\Faq;
-
 use Menu;
 
 class FaqsServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         $this->setMenu();
 
         $this->setRoutes();
 
-        $this->setRouterBind();
-
         $this->loadViews();
+
+        $this->loadMigrations();
 
         $this->publish();
     }
 
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
     public function register()
     {
-       #$this->mergeConfigFrom(__DIR__ . '/../config/maudit.php', 'maudit.alias');
+        $this->loadConfigs();
     }
 
     protected function setMenu()
     {
         Menu::modify('adminlte-sidebar', function ($menu) {
-            $menu->route('admin.faqs.index', 'Faqs', [], 20
+            $menu->route('admin.faqs.index', config('mfaqs.name', 'Faqs'), [], config('marticles.order', 20)
                 , ['icon' => config('mfaqs.icon', 'fa fa-question'), 'active' => function () {
                     return checkActive(route('admin.faqs.index'));
                 }])->hideWhen(function () {
@@ -49,7 +38,7 @@ class FaqsServiceProvider extends ServiceProvider
         });
 
         Menu::modify('adminlte-permissions', function ($menu) {
-            $menu->url('admin.faqs', 'Faqs', 20);
+            $menu->url('admin.faqs', config('mfaqs.name', 'Faqs'), config('marticles.order', 20));
         });
     }
 
@@ -58,26 +47,25 @@ class FaqsServiceProvider extends ServiceProvider
         if (!$this->app->routesAreCached()) {
             $this->app->router->group(['namespace' => 'Mixdinternet\Faqs\Http\Controllers'],
                 function () {
-                    require __DIR__ . '/../Http/routes.php';
+                    require __DIR__ . '/../routes/web.php';
                 });
         }
-    }
-
-    protected function setRouterBind()
-    {
-        $this->app->router->bind('faqs', function ($id) {
-            $faq = Faq::find($id);
-            if (!$faq) {
-                abort(404);
-            }
-
-            return $faq;
-        });
     }
 
     protected function loadViews()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'mixdinternet/faqs');
+    }
+
+    protected function loadMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
+    protected function loadConfigs()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/maudit.php', 'maudit.alias');
+        $this->mergeConfigFrom(__DIR__ . '/../config/mfaqs.php', 'mfaqs');
     }
 
     protected function publish()

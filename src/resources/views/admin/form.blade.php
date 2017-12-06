@@ -1,7 +1,7 @@
 @extends('admin.form')
 
 @section('title')
-    Gerenciar Faqs
+    Gerenciar {{ strtolower(config('mfaqs.name', 'Faqs')) }}
 @endsection
 
 @section('form')
@@ -29,10 +29,7 @@
                 {!! BootForm::textarea('description', 'Descrição', null, ['class' => 'jq-summernote', 'data-rule-required' => true]) !!}
 
                 {!! BootForm::text('order', 'Ordem', null, ['maxlength' => '3']) !!}
-
-               
             </div>
-            
         </div>
     </div>
     {!! BootForm::close() !!}

@@ -1,12 +1,12 @@
 @extends('admin.index')
 
 @section('title')
-    Listagem de Faqs
+    Listagem de {{ strtolower(config('mfaqs.name', 'Faqs')) }}
 @endsection
 
 @section('btn-insert')
     @if((!checkRule('admin.faqs.create')) && (!$trash))
-        @include('admin.partials.actions.btn.insert', ['route' => route('admin.faqs.create'), 'title' => 'Marca'])
+        @include('admin.partials.actions.btn.insert', ['route' => route('admin.faqs.create')])
     @endif
     @if((!checkRule('admin.faqs.trash')) && (!$trash))
         @include('admin.partials.actions.btn.trash', ['route' => route('admin.faqs.trash')])

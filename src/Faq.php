@@ -29,14 +29,13 @@ class Faq extends Model implements SluggableInterface, StaplerableInterface
         'star' => 'boolean:Não|Sim',
     ];
 
-   
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['status', 'star', 'name', 'description', 'order'];
 
     public function __construct(array $attributes = [])
     {
-       parent::__construct($attributes);
+        parent::__construct($attributes);
     }
 
     public static function boot()
@@ -50,8 +49,6 @@ class Faq extends Model implements SluggableInterface, StaplerableInterface
     {
         $this->attributes['order'] = ($value) ? $value : null;
     }
-
-    
 
     public function scopeSort($query, $fields = [])
     {
@@ -71,8 +68,7 @@ class Faq extends Model implements SluggableInterface, StaplerableInterface
         foreach ($fields as $field => $order) {
             if ($field == 'order') {
                 $query->orderByRaw('case when `order` is null then 1 else 0 end, `order` ' . $order);
-            }
-            else {
+            } else {
                 $query->orderBy($field, $order);
             }
         }
