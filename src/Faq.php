@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Venturecraft\Revisionable\RevisionableTrait;
-use Carbon\Carbon;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
 use Codesleeve\Stapler\ORM\EloquentTrait;
+use Carbon\Carbon;
 
 
-class Faq extends Model implements SluggableInterface, StaplerableInterface
+class Faq extends Model implements StaplerableInterface
 {
     use SoftDeletes, Sluggable, RevisionableTrait, EloquentTrait;
 
