@@ -4,8 +4,7 @@ namespace Mixdinternet\Faqs;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Cviebrock\EloquentSluggable\SluggableTrait;
-use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Venturecraft\Revisionable\RevisionableTrait;
 use Carbon\Carbon;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
@@ -14,7 +13,7 @@ use Codesleeve\Stapler\ORM\EloquentTrait;
 
 class Faq extends Model implements SluggableInterface, StaplerableInterface
 {
-    use SoftDeletes, SluggableTrait, RevisionableTrait, EloquentTrait;
+    use SoftDeletes, Sluggable, RevisionableTrait, EloquentTrait;
 
     protected $revisionCreationsEnabled = true;
 
@@ -43,6 +42,15 @@ class Faq extends Model implements SluggableInterface, StaplerableInterface
         parent::boot();
 
         static::bootStapler();
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 
     public function setOrderAttribute($value)
