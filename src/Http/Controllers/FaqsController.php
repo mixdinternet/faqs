@@ -2,11 +2,11 @@
 
 namespace Mixdinternet\Faqs\Http\Controllers;
 
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Controller;
 use Mixdinternet\Faqs\Faq;
 use Illuminate\Http\Request;
 
-class FaqsController extends FrontendController
+class FaqsController extends Controller
 {
     protected $fields = ['id', 'star', 'name', 'description', 'slug'];
 

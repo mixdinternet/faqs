@@ -3,25 +3,16 @@
 namespace Mixdinternet\Faqs\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Caffeinated\Flash\Facades\Flash;
-use App\Http\Controllers\AdminController;
-
 use Mixdinternet\Faqs\Faq;
 use Mixdinternet\Faqs\Http\Requests\CreateEditFaqsRequest;
+use Mixdinternet\Admix\Http\Controllers\AdmixController;
 
-class FaqsAdminController extends AdminController
+class FaqsAdminController extends AdmixController
 {
-
-    public function __construct()
-    {
-
-    }
-
     public function index(Request $request)
     {
         session()->put('backUrl', request()->fullUrl());
-
         $trash = ($request->segment(3) == 'trash') ? true : false;
 
         $query = Faq::sort();
