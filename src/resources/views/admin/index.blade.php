@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('mixdinternet/admix::index')
 
 @section('title')
     Listagem de {{ strtolower(config('mfaqs.name', 'Faqs')) }}
